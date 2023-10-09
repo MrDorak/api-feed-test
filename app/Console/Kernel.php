@@ -13,10 +13,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // refresh the feed daily for the
+        // refresh the feed for the library (this would be used in prod in a working queue every day for example)
         $schedule->call(function () {
             Profile::for('dorian')->refreshFeed();
-        })->daily();
+        });
     }
 
     /**

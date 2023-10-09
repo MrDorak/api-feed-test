@@ -21,7 +21,7 @@ class InstagramAuthController extends BaseController
     }
 
     public function get() {
-        $profile = Profile::where('username', 'dorian')->first();
+        $profile = Profile::firstOrCreate(['username' => 'dorian']);
         return redirect($profile->getInstagramAuthUrl());
     }
 
@@ -73,7 +73,7 @@ class InstagramAuthController extends BaseController
     /*
      * Authorize the app and authenticate the user
      * */
-    public function getCodeRaw() {
+    public function getRaw() {
         $client_id = config('instagram-feed.client_id');
         $redirect = (app()->isLocal() ? 'https://localhost' : '') . route('raw.callback', [], !app()->isLocal());
 

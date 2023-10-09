@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 // routes using the https://laravelpackages.net/ralphmorris/laravel-instagram-feed library to consume the Instagram API
 Route::prefix("lib")->name('lib.')->group(function () {
     Route::get('instagram-auth', [InstagramAuthController::class, 'index'])->name("index");
-    Route::get('instagram-auth/get', [InstagramAuthController::class, 'getCode'])->name("get");
+    Route::get('instagram-auth/get', [InstagramAuthController::class, 'get'])->name("get");
     // callback route is handled by the library
     Route::get('instagram-auth/success', [InstagramAuthController::class, 'complete'])->name("callback-success");
 });
@@ -25,7 +25,7 @@ Route::prefix("lib")->name('lib.')->group(function () {
 
 // routes for "raw" (no 3rd party library) Instagram API consumption
 Route::prefix("raw")->name('raw.')->group(function () {
-    Route::get('instagram-auth/get', [InstagramAuthController::class, 'getCodeRaw'])->name("get");
+    Route::get('instagram-auth/get', [InstagramAuthController::class, 'getRaw'])->name("get");
     Route::get('instagram-auth/callback', [InstagramAuthController::class, 'callbackRaw'])->name("callback");
     Route::get('instagram-auth/{profile}', [InstagramAuthController::class, 'indexRaw'])->name("index");
     Route::get('instagram-auth-refresh/{profile}', [InstagramAuthController::class, 'refreshRaw'])->name("refresh");
