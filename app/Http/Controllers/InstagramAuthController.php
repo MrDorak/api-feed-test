@@ -62,7 +62,6 @@ class InstagramAuthController extends BaseController
             "fields" => "caption,id,media_type,media_url,thumbnail_url,permalink,children{media_type,media_url},timestamp",
             "access_token" => $profile->access_token
         ])->collect('data');
-        //$feed = collect();
 
         Cache::forget($profile->cacheKey());
         Cache::forever($profile->cacheKey(), $feed);
