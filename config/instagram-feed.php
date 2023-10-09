@@ -2,52 +2,36 @@
 
 return [
     /*
-     * The client_id from registering your app on Instagram
+     * The client_id from registering the app on Instagram
      */
-    'client_id'           => '540598038244558',
+    'client_id'           => env("INSTAGRAM_CLIENT_ID"),
 
     /*
-     * The client secret from registering your app on Instagram,
-     * This is not the same as an access token.
+     * The client secret from registering the app on Instagram
      */
-    'client_secret'       => 'a173397d869523af093d38738774987a',
+    'client_secret'       => env("INSTAGRAM_CLIENT_SECRET"),
 
     /*
      * The base url used to generate to auth callback route for instagram.
-     * This defaults to your APP_URL, so normally you may leave it as null
      */
     'base_url' => 'https://localhost/',
 
     /*
      * The route that will respond to the Instagram callback during the OAuth process.
-     * Only enter the path without the leading slash. You need to ensure that you have registered
-     * a redirect_uri for your instagram app that is equal to combining the
-     *  app url (from config) and this route
      */
-    'auth_callback_route' => 'instagram/auth/callback',
+    'auth_callback_route' => 'lib/instagram-auth/callback',
 
     /*
      * On success of the OAuth process you will be redirected to this route.
-     * You may use query strings to carry messages
      */
-    'success_redirect_to' => 'instagram-auth-success',
+    'success_redirect_to' => 'lib/instagram-auth/success',
 
     /*
      * If the OAuth process fails for some reason you will be redirected to this route.
-     * You may use query strings to carry messages
      */
-    'failure_redirect_to' => 'instagram-auth-failure',
+    'failure_redirect_to' => 'lib/instagram-auth/failure',
 
-    /*
-     * You may filter out video media types by setting this to true. Carousel media
-     * will become the first image in the carousel, and if there are no images, then
-     * the entire carousel will be ignored.
-     */
     'ignore_video' => false,
 
-    /*
-     * You may set an email address below if you wish to be notified of errors when
-     * attempting to refresh the Instagram feed.
-     */
     'notify_on_error' => null,
 ];
